@@ -118,4 +118,22 @@ app.post("/post", async (request, response) => {
   }
 });
 
+//Posts
+app.post("/posts", async (request, response) => {
+  const user =  request.session.userId;
+  try {
+    const { userUuid, ...data } = request.body;
+    console.log(user);
+    if (user) {
+      const post = await PostModel.find({userUuid: user});
+      response.status(200).json({
+        publicaciones: post,
+      })
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500).json(error);
+  }
+});
+
 app.listen(PORT, () => console.log(`Server listen on port ${PORT}`));
