@@ -27,10 +27,37 @@ const UserSchema = new mongoose.Schema({
   password: String,
 });
 
+
+const PostSchema = new mongoose.Schema({
+  noteIn: String,
+  userUuid: String,
+});
+
+const PostModel = mongoose.model("Post", PostSchema);
 const UserModel = mongoose.model("User", UserSchema);
 app.use(express.json());
   
 //Cookie
+app.use(cookieSession({
+  secret: " ",
+  maxAge: 5 * 60 * 1000,
+  }));
+//Register
+app.post("/register", async (request, response) => {
+  try {
+    const { password, ...data } = request.body;
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    const user = await UserModel.create({ ...data, password: encryptedPassword });
+    response.status(200).json({
+      user
+    })
+  } catch (error) {
+      console.log(error);
+      response.status(500).json(error);
+    }
+});
+
+//Login
 app.post("/login", async (request, response) => {
   try {
     const { username, password } = request.body;
@@ -38,21 +65,22 @@ app.post("/login", async (request, response) => {
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
+        request.session.userId = user._id;
         response.status(200).json({
           logged: true,
         });
       } else {
-        response.status(200).json({
+        response.status(401).json({
           logged: false,
         });
       }  
     } else {
-      response.status(200).json({
+      response.status(401).json({
         logged: false,
       });
     }  
   } catch (error) {
-    response.status(400).json(error);
+    response.status(500).json(error);
   }
 });
 
