@@ -10,10 +10,7 @@ const app = express();
 const PORT = 3000;
 
 
-app.use(cookieSession({
-secret: " ",
-maxAge: 5 * 60 * 1000,
-}));
+
 //Mongo
 
 mongoose.connect("mongodb://localhost:27017/noble", {
@@ -32,32 +29,21 @@ const UserSchema = new mongoose.Schema({
   password: String,
 });
 
+
+const PostSchema = new mongoose.Schema({
+  noteIn: String,
+  userUuid: String,
+});
+
+const PostModel = mongoose.model("Post", PostSchema);
 const UserModel = mongoose.model("User", UserSchema);
 app.use(express.json());
   
 //Cookie
-app.post("/login", async (request, response) => {
-  try {
-    const { userName, password } = request.body;
-    const user = await UserModel.findOne({ userName }).exec();
-    if (user) {
-      console.log(userName)
-      const passwordMatch = await bcrypt.compare(password, user.password);
-      if (passwordMatch) {
-        response.status(200).json({
-          logged: true,
-        })
-        response.redirect("/");
-      }
-    }
-    response.status(200).json({
-      logged: false,
-    })
-  } catch (error) {
-    console.log(error);
-    response.status(400).json(error);
-  }
-})
+app.use(cookieSession({
+  secret: " ",
+  maxAge: 5 * 60 * 1000,
+  }));
 //Register
 app.post("/register", async (request, response) => {
   try {
@@ -68,8 +54,54 @@ app.post("/register", async (request, response) => {
       user
     })
   } catch (error) {
+      console.log(error);
+      response.status(500).json(error);
+    }
+});
+
+//Login
+app.post("/login", async (request, response) => {
+  try {
+    const { userName, password } = request.body;
+    const user = await UserModel.findOne({ userName }).exec();
+    if (user) {
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (passwordMatch) {
+        request.session.userId = user._id;
+        response.status(200).json({
+          logged: true,
+        })
+      } else {
+        response.status(200).json({
+          logged: false,
+        })
+      }
+    } else {
+      response.status(200).json({
+        logged: false,
+        })
+    } 
+  } catch (error) {
+    console.log(error);
+    response.status(400).json(error);
+  }
+})
+
+//Post
+app.post("/post", async (request, response) => {
+  const user =  request.session.userId;
+  try {
+    const { userUuid, ...data } = request.body;
+    console.log(user);
+    if (user) {
+      const post = await PostModel.create({ ...data, userUuid: user});
+      response.status(200).json({
+        created: true,
+      })
+    }
+  } catch (error) {
     console.log(error);
     response.status(500).json(error);
   }
-});
+})
 app.listen(PORT, () => console.log(`Server listen on port ${PORT}`));
