@@ -42,20 +42,6 @@ app.use(cookieSession({
   secret: " ",
   maxAge: 5 * 60 * 1000,
   }));
-//Register
-app.post("/register", async (request, response) => {
-  try {
-    const { password, ...data } = request.body;
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    const user = await UserModel.create({ ...data, password: encryptedPassword });
-    response.status(200).json({
-      user
-    })
-  } catch (error) {
-      console.log(error);
-      response.status(500).json(error);
-    }
-});
 
 //Login
 app.post("/login", async (request, response) => {
@@ -112,6 +98,24 @@ app.post("/register", async (request, response) => {
     }  
   } catch (error) {
     response.status(400).json(error);
+  }
+});
+
+//Posts
+app.post("/posts", async (request, response) => {
+  const user =  request.session.userId;
+  try {
+    const { userUuid, ...data } = request.body;
+    console.log(user);
+    if (user) {
+      const post = await PostModel.find({userUuid: user});
+      response.status(200).json({
+        publicaciones: post,
+      })
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500).json(error);
   }
 });
 
