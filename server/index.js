@@ -101,7 +101,7 @@ app.post("/post", async (request, response) => {
     }
   } catch (error) {
     console.log(error);
-    response.status(500).json(error);
+    response.status(401).json(error);
   }
 })
 
@@ -122,4 +122,13 @@ app.post("/posts", async (request, response) => {
     response.status(500).json(error);
   }
 })
+//Logout
+app.get("/logout", (request, response) => {
+  request.session.userId = null;
+  response.status(200).json({
+    loggedOut: true,
+  })
+  
+});
+
 app.listen(PORT, () => console.log(`Server listen on port ${PORT}`));
