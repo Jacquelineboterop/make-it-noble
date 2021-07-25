@@ -23,7 +23,7 @@ mongoose.connection.once("open", () => console.log("Mongoose connected"));
 const UserSchema = new mongoose.Schema({
   name: String,
   lastname: String,
-  userName: String,
+  username: String,
   password: String,
 });
 
@@ -62,7 +62,7 @@ app.post("/register", async (request, response) => {
     const { password, ...data } = request.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
 
-    if (data.name=="" || data.lastNames=="" || password=="" || data.userName=="") {
+    if (data.name=="" || data.lastname=="" || password=="" || data.userName=="") {
       response.status(400).json({
         created: false,
       });
