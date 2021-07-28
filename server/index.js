@@ -47,8 +47,8 @@ app.post("/login", async (request, response) => {
         });
       }  
     } else {
-        response.status(200).json({
-          logged: false,
+      response.status(200).json({
+        logged: false,
       });
     }  
   } catch (error) {
@@ -68,10 +68,13 @@ app.post("/register", async (request, response) => {
       });
       
     } else {
-      const user = await UserModel.create({ ...data, password: encryptedPassword });
+      const user = await UserModel.create({
+        ...data,
+        password: encryptedPassword
+      });
       response.status(200).json({
         user,
-        create:true,
+        created:true,
       });
     }  
   } catch (error) {
