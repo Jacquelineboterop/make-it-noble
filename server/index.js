@@ -12,8 +12,8 @@ app.use(cookieSession({
   secret: " ",
   maxAge: 5 * 60 * 1000,
 }));
-//Mongo
 
+//Mongo
 mongoose.connect("mongodb://localhost:27017/noble", {
   useNewUrlParser: true
 });
@@ -27,10 +27,22 @@ const UserSchema = new mongoose.Schema({
   password: String,
 });
 
+const PostSchema = new mongoose.Schema({
+  noteIn: String,
+  userUuid: String,
+});
+
+const PostModel = mongoose.model("Post", PostSchema);
 const UserModel = mongoose.model("User", UserSchema);
 app.use(express.json());
   
 //Cookie
+app.use(cookieSession({
+  secret: " ",
+  maxAge: 5 * 60 * 1000,
+}));
+
+//Login
 app.post("/login", async (request, response) => {
   try {
     const { username, password } = request.body;
@@ -38,21 +50,22 @@ app.post("/login", async (request, response) => {
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
+        request.session.userId = user._id;
         response.status(200).json({
           logged: true,
         });
       } else {
-        response.status(200).json({
+        response.status(401).json({
           logged: false,
         });
       }  
     } else {
-      response.status(200).json({
+      response.status(401).json({
         logged: false,
       });
     }  
   } catch (error) {
-    response.status(400).json(error);
+    response.status(500).json(error);
   }
 });
 
@@ -84,6 +97,24 @@ app.post("/register", async (request, response) => {
     }  
   } catch (error) {
     response.status(400).json(error);
+  }
+});
+
+//Post
+app.post("/post", async (request, response) => {
+  const user =  request.session.userId;
+  try {
+    const { userUuid, ...data } = request.body;
+    if (user) {
+      const post = await PostModel.create({ ...data, userUuid: user});
+      response.status(200).json({
+        created: true,
+      });
+    } else {
+      response.status(401).json(error);
+    }  
+  } catch (error) {
+    response.status(500).json(error);
   }
 });
 
