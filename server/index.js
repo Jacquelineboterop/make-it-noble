@@ -96,7 +96,7 @@ app.post("/register", async (request, response) => {
       });
     }  
   } catch (error) {
-    response.status(400).json(error);
+    response.status(401).json(error);
   }
 });
 
@@ -109,6 +109,24 @@ app.post("/post", async (request, response) => {
       const post = await PostModel.create({ ...data, userUuid: user});
       response.status(200).json({
         created: true,
+      });
+    } else {
+      response.status(401).json(error);
+    }  
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
+
+//Posts
+app.post("/posts", async (request, response) => {
+  const user =  request.session.userId;
+  try {
+    const { userUuid, ...data } = request.body;
+    if (user) {
+      const post = await PostModel.find({userUuid: user});
+      response.status(200).json({
+        publicaciones: post,
       });
     } else {
       response.status(401).json(error);
