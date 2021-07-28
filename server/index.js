@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   lastname: String,
   username: String,
-  password: { type: String, select: false },
+  password: String,
 });
 
 const UserModel = mongoose.model("User", UserSchema);
@@ -62,15 +62,24 @@ app.post("/register", async (request, response) => {
     const { password, ...data } = request.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
   
-    if (data.name=="" || data.lastname=="" || password=="" || data.username=="") {
+    if (
+      data.name === "" ||
+      data.lastname === "" ||
+      password === "" ||
+      data.username === ""
+    ) {
       response.status(400).json({
         created: false,
       });
       
     } else {
-      const user = await UserModel.create({ ...data, password: encryptedPassword });
+      const user = await UserModel.create({
+        ...data,
+        password: encryptedPassword
+      });
       response.status(200).json({
-        create:true,
+        user,
+        created:true,
       });
     }  
   } catch (error) {
