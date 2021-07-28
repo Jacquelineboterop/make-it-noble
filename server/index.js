@@ -33,8 +33,8 @@ app.use(express.json());
 //Cookie
 app.post("/login", async (request, response) => {
   try {
-    const { userName, password } = request.body;
-    const user = await UserModel.findOne({ userName }).exec();
+    const { username, password } = request.body;
+    const user = await UserModel.findOne({ username }).exec();
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
@@ -52,7 +52,7 @@ app.post("/login", async (request, response) => {
       });
     }  
   } catch (error) {
-    response.status(400).json(error)
+    response.status(400).json(error);
   }
 });
 
@@ -61,8 +61,13 @@ app.post("/register", async (request, response) => {
   try {
     const { password, ...data } = request.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
-
-    if (data.name=="" || data.lastname=="" || password=="" || data.userName=="") {
+  
+    if (
+      data.name === "" ||
+      data.lastname === "" ||
+      password === "" ||
+      data.username === ""
+    ) {
       response.status(400).json({
         created: false,
       });
