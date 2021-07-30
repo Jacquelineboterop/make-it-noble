@@ -19,7 +19,7 @@
   .header {
     flex-direction: column;
     height: 100vh;
-    width: 5vw;
+    width: 65px;
   }
 
   .header-box {
