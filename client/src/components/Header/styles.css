@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-box {
+  display: flex;
+}
+.header-icon {
+  color: #FFFFFF;
+  width: 20px;
+  height: 20px;
+  margin: 16px 11px;
+}
+
+@media (min-width: 600px) {
+  .header {
+    flex-direction: column;
+    height: 100vh;
+    width: 5vw;
+  }
+
+  .header-box {
+    flex-direction: column;
+  }
+  .header-icon {
+    margin: 14px 24px;
+  }
+
+}
