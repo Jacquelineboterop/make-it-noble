@@ -14,6 +14,13 @@
   height: 20px;
   margin: 16px 11px;
 }
+.header-photo {
+  color: #FFFFFF;
+  width: 20px;
+  height: 20px;
+  margin: 16px 11px;
+  border-radius: 10px;
+}
 
 @media (min-width: 600px) {
   .header {
