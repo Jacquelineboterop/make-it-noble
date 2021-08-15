@@ -5,7 +5,6 @@ import './styles.css'
 function Login() {
   const [username, setUserName]= useState("");
   const [password, setPassword]= useState("");
-  console.log(process.env.REACT_APP_SERVER_URL);
 
   async function handleSubmit(event) {
    event.preventDefault();
@@ -23,17 +22,16 @@ function Login() {
    }).catch(error => {
      console.log(error)
    })
-
-
   }
+  
   return  (
     <div>
       <form onSubmit={handleSubmit}>
         <fieldset> 
-         <input type="text" value={username} onChange={event => setUserName(event.target.value)} placeholder="Username"/>
+          <input type="text" value={username} onChange={event => setUserName(event.target.value)} placeholder="Username"/>
         </fieldset>
         <fieldset> 
-         <input type="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="Password"/>
+          <input type="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="Password"/>
         </fieldset>
         <button type="submit">Ingresar</button>
       </form>

@@ -1,10 +1,10 @@
 .post-box-one {
-  grid-column: 1 / 3;
-  grid-row: 1;
   background-color: #FFFFFF;
   border-color: #DAEAF2;
   border-style: solid;
   border-width: 1px;
+  grid-column: 1 / 3;
+  grid-row: 1;
   width: 240px;
 }
 
@@ -50,21 +50,22 @@
 }
 
 .txt-post-footer {
+  color: #78A1B6;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 20px;
-  color: #78A1B6;
   text-align: left;
   text-decoration: none;
 }
+
 .txt-post-footer-social {
+  color: #78A1B6;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 20px;
   padding-right: 16px;
-  color: #78A1B6;
   text-align: left;
   text-decoration: none;
 }
@@ -72,18 +73,17 @@
 .footer-post {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   height: 40px;
+  justify-content: space-between;
 }
+
 .footer-post-icons {
+  color: #78A1B6;
   display: flex;
   flex-direction: row;
+  height: 20px;
   justify-content: space-between;
   width: 150px;
-  height: 20px;
-  color: #78A1B6;
-}
-.footer-heart-icon {
 }
 
 .wrapper {
@@ -96,18 +96,22 @@
   grid-column: 2 / 4;
   grid-row: 1 / 3;
 }
+
 .three {
   grid-column: 1;
   grid-row: 2 / 5;
 }
+
 .four {
   grid-column: 3;
   grid-row: 3;
 }
+
 .five {
   grid-column: 2;
   grid-row: 4;
 }
+
 .six {
   grid-column: 3;
   grid-row: 4;
@@ -124,6 +128,7 @@
     height: 208px;
     width: 320px;
   }
+
   .wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
