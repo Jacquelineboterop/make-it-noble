@@ -1,27 +1,47 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import { BsHouse, BsBell, BsSearch } from 'react-icons/bs'
-import photo from './photo2.png'
+import React, { useState } from 'react';
+import { IoShareSocial, IoHeartOutline, IoChatbubblesOutline } from "react-icons/io5";
+import photo from './photo.png'
 import './styles.css'
 
 function Post() {
   return  (
-    <Modal.Dialog className="post">
-      <header className="post-header">
-        <a><BsSearch className="header-icon"/></a>
-        <a><BsBell className="post-icon"/></a>
-      </header>
-      <section className="post-content">
-        <a><BsSearch className="header-icon"/></a>
-        <a><BsBell className="post-icon"/></a>
-      </section>
-      <section className="post-footer">
-        <a><BsSearch className="header-icon"/></a>
-        <button className="publish-button">Publicar</button>
-        <a><BsBell className="post-icon"/></a>
-      </section>
+    <div className="wrapper">
+    <div className="post-box-one">
+      <div className="header-post">
+        <img src={photo} className="header-post-photo"/>
+    
+        <a href="#" className="txt-post-name" >July Braum <p className="txt-date">Dic 3. 2021</p></a>
+      </div>
+      <div className="body-post">
+        <p className="txt-post-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry.It has survived not only five centuries.</p>
+      </div>
+      <div className="footer-post">
+        <div>
 
-    </Modal.Dialog>
+        </div>
+        <div className="footer-post-icons">
+        <IoHeartOutline className="footer-heart-icon"/><a className="txt-post-footer">25</a>
+        <IoChatbubblesOutline className="footer-message-icon"/><a className="txt-post-footer">1</a>
+        <IoShareSocial className="footer-social-icon"/><a className="txt-post-footer-social">1</a>
+        </div>
+      </div>
+    </div>
+    <div className="two">
+
+    </div>
+    <div className="tree">
+
+    </div>
+    <div className="four">
+
+    </div>
+    <div className="five">
+
+    </div>
+    <div className="six">
+
+    </div>
+    </div>
   )
 }
 

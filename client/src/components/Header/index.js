@@ -14,14 +14,15 @@ function Header() {
       </div>
       <div className="header-box-footer">
         <a><BsSearch className="header-icon"/></a>
-        <a><BsHouse className="header-icon"/></a>
-        <a onClick={() => setShow(!show)}><img src={photo} className="header-photo"/></a>  
-                {show && <ul className="profile-menu">
-                  <li className="menu-header"><a href="#" className="txt-menu-name" >Doctor House <span className="txt-menu-alias">@DoctorCasas</span></a></li>
-                  <li className="menu-body"><BsGear className="menu-icon-body"/><a href="#" className="txt-menu-body">Configuracion</a></li>
-                  <li className="menu-footer"><BsBoxArrowInRight className="menu-icon-footer"/><a href="#" className="txt-menu-body">Cerrar sesion</a></li>
-                </ul>}
-
+        <div className="user-menu-container">
+          <a><BsHouse className="header-icon"/></a>
+          <a onClick={() => setShow(!show)}><img src={photo} className="header-photo"/></a>  
+            {show && <ul className="profile-menu">
+              <li className="menu-header"><a href="#" className="txt-menu-name" >Doctor House <span className="txt-menu-alias">@DoctorCasas</span></a></li>
+              <li className="menu-body"><BsGear className="menu-icon-body"/><a href="#" className="txt-menu-body">Configuracion</a></li>
+              <li className="menu-footer"><BsBoxArrowInRight className="menu-icon-footer"/><a href="#" className="txt-menu-body">Cerrar sesion</a></li>
+            </ul>}
+        </div>
       </div>
     </header>
   )

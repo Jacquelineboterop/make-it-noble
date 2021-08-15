@@ -2,33 +2,37 @@
   display: flex;
   background-color: black;
   justify-content: space-between;
+  position: relative;
   width: 100%;
 }
 
 .header-box {
   display: flex;
 }
+
 .header-box-footer {
 display: flex;
 }
+
 .header-icon {
   color: #FFFFFF;
-  width: 20px;
   height: 20px;
   margin: 16px 11px;
+  width: 20px;
 }
+
 .header-photo {
+  border-radius: 10px;
   color: #FFFFFF;
-  width: 20px;
   height: 20px;
   margin: 16px 11px;
-  border-radius: 10px;
+  width: 20px;
 }
 
 .post {
   position:absolute;
-
 }
+
 body {
   background-color: white;
   font-family: 'Raleway', sans-serif;
@@ -38,25 +42,24 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: auto;
   margin-top: 40px;
+  margin: auto;
   position: relative;
   width: 100%;
 }
 
 .profile-menu {
-  padding-left: 0;
-  position: absolute;
-  left: 0px;
-  top: 50px;
   background: black;
-  transition: background 3s;
- /* overflow: hidden;*/
+  border-radius: 0 0 8px 8px;  
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
   transition: all .4s ease-out;
-  width: 320px;
-  height: 164px;
-  border-radius: 0px 0px 8px 8px;  
 }
+
 .menu-header {
   border-bottom-color: #3c3c3c;
   border-bottom-style: solid;
@@ -67,11 +70,12 @@ body {
   padding-top: 8px;
   width: 100%;
 }
+
 .txt-menu-name {
+  color: #FFFFFF;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   text-decoration: none;
-  color: #FFFFFF;
 }
 
 .txt-menu-body {
@@ -79,13 +83,11 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
+  height: 24px;
   line-height: 21px;
   text-decoration: none;
   width: 132px;
-  height: 24px;
-
 }
-
 
 .txt-menu-alias {
   color: #78A1B6;
@@ -94,7 +96,6 @@ body {
   font-weight: 400;
   line-height: 21px;  display: block;
   text-decoration: none;
-
 }
 
 .menu-body {
@@ -109,6 +110,7 @@ body {
   padding: 12px;
   width: 320px;
 }
+
 .menu-footer {
   color: #FFFFFF;
   display: flex;
@@ -118,20 +120,23 @@ body {
   padding: 12px;
   width: 320px;
 }
+
 .menu-icon-body {
   color: #FFFFFF;
-  width: 20px;
   height: 20px;
+  width: 20px;
 }
+
 .menu-icon-footer {
   color: #FFFFFF;
-  width: 20px;
   height: 20px;
+  width: 20px;
 }
+
 .menu-icon {
   color: #FFFFFF;
-  width: 20px;
   height: 20px;
+  width: 20px;
 }
 
 @media (min-width: 600px) {
@@ -144,23 +149,28 @@ body {
   .header-box {
     flex-direction: column;
   }
+
   .header-box-footer {
     flex-direction: column;
   }
+
   .header-icon {
     margin: 14px 24px;
   }
 
+  .user-menu-container {
+    position: relative;
+  }
+
   .profile-menu {
-    flex-direction: column;
-    position: absolute;
     background: black;
-    transition: background 3s;
-    top: 468px;
-   /* overflow: hidden;*/
+    border-radius: 8px;    
+    bottom: 0;
+    flex-direction: column;
+    left: calc(100% + 8px);
+    right: initial;
+    top: initial;
     transition: all .4s ease-out;
-    left: 73px;
     width: 320px;
-    height: 164px;
-    border-radius: 8px;    }
+  }
 }
