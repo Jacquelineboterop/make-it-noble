@@ -14,6 +14,7 @@ import Combobox from './components/Combobox'
 import Register from './components/Register'
 import Login from './components/Login'
 import Post from './components/Post'
+import Posts from './components/Posts'
 
 /*import Inicio from './components/Inicio'*/
 
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/newpost" component={Combobox} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/post" component={Post} />
+          <Route exact path="/posts" component={Posts} />
         </Switch>
       </Router>
     </div>
