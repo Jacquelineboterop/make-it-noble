@@ -25,7 +25,6 @@
   grid-area: area1;
   grid-template-rows: 80px auto 20px;
   height: 100%;
-  padding: 1px;
   text-align: center;
   width: 100%;
 }
@@ -82,7 +81,7 @@
 .footer-post {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: flex-end; 
 }
 
 .footer-post-icons {

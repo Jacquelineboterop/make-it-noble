@@ -11,10 +11,9 @@ function Post() {
           <a href="#" className="txt-post-name" >July Braum <p className="txt-date">Dic 3. 2021</p></a>
         </div>
         <div className="body-post">
-          <p className="txt-post-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry.It has survived not only five centuries.</p>
+          <p className="txt-post-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
         </div>
         <div className="footer-post">
-          <div></div>
           <div className="footer-post-icons">
             <div className="footer-heart-icons">
             <IoHeartOutline size="16px"/><a className="txt-post-footer">25</a>
