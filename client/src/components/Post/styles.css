@@ -1,0 +1,120 @@
+.header-post {
+  display: flex;
+  flex-direction: row;
+  height: 62px;
+}
+
+.header-post-photo {
+  border-radius: 28px;
+  color: #FFFFFF;
+  height: 53.37px;
+  margin: 13.44px 0;
+  width: 53.37px;
+}
+
+.header-post {
+  display: flex;
+  flex-direction: row;
+  height: 62px;
+}
+
+.post-grid-item {
+  background-color: #fff;
+  display: grid;
+  grid-area: area1;
+  grid-template-rows: 80px auto 20px;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.body-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  margin: 0;
+  min-height: 15vh;
+}
+
+.txt-post-name {
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 23px 12px;
+  text-decoration: none;
+}
+
+.txt-date {
+  color: #90A4A8;
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+}
+
+.txt-post-body {
+  color: #696969;
+  font-family: 'Poppins', sans-serif;
+  font-size:   calc(0.5em + 0.3vw);
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+}
+
+.txt-post-footer {
+  color: #78A1B6;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  height: 24px;
+  margin-left: 1.5px;
+  text-align: center;
+  text-decoration: none;
+  width: 18px;
+}
+
+.footer-post {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; 
+}
+
+.footer-post-icons {
+  color: #78A1B6;
+  display: flex;
+  flex-direction: row;
+  height: 18px;
+  width: 120px;
+}
+
+.footer-heart-icons {
+  color: #78A1B6;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-social-icons {
+  color: #78A1B6;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-message-icons {
+  color: #78A1B6;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-header {
+  flex-direction: column;
+  height: 100vh;
+  width: 65px;
+}
+
+@media (max-width: 600px) {
+  .post {
+    width: 100vh;
+  }
+}
