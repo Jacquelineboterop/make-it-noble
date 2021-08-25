@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Header from './components/Header';
-import Post from './components/Post';
+import Posts from './components/Posts'
 import {
   Switch,
   Route,
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Header />
           <Switch>
-            <Route exact path="/post" component={Post} />
+            <Route exact path="/posts" component={Posts} />
           </Switch>
       </Router>
     </div> 
