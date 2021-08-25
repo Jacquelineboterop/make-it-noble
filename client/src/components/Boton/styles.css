@@ -1,0 +1,9 @@
+.button {
+  background-color: transparent;
+  border: none;
+  bottom: 18px;
+  color: #04C3FF;
+  float: right;
+  position: absolute;
+  right: 21px;
+}

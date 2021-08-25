@@ -1,58 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Post from '../Post';
-import './styles.css'
-
-const posts = [
-  {
-    author: 'July Braum',
-    date: '2017-07-01',
-    content: 'Lorem Ipsum is imply a dummy text 111'
-  },
-  {
-    author: 'Fred',
-    date: '2017-07-02',
-    content: 'Lorem Ipsum is imply a dummy text 222'
-  },
-  {
-    author: 'Bob',
-    date: '2017-07-03',
-    content: 'Lorem Ipsum is imply a dummy text 333'
-  },
-  {
-    author: 'Link',
-    date: '2017-07-04',
-    content: 'Lorem Ipsum is imply a dummy text 444'
-  },
-  {
-    author: 'July Braum',
-    date: '2017-07-01',
-    content: 'Lorem Ipsum is imply a dummy text 555'
-  },
-  {
-    author: 'Fred',
-    date: '2017-07-02',
-    content: 'Lorem Ipsum is imply a dummy text 666'
-  },
-  {
-    author: 'Bob',
-    date: '2017-07-03',
-    content: 'Lorem Ipsum is imply a dummy text 777'
-  },
-  {
-    author: 'Link',
-    date: '2017-07-04',
-    content: 'Lorem Ipsum is imply a dummy text 888'
-  },
-]
+import './styles.css';
+import Boton from '../Boton';
 
 function Posts() {
-  return  (
+  const [posts, setPosts] = useState([]);
+
+  useEffect(()=>{
+    async function loadPosts() {
+      const {posts} = await axios({
+        url: 'http://localhost:3000/posts/',
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(response => response.data);
+      setPosts([...posts, ...posts]);
+    }
+    loadPosts();
+  }, [])
+
+  return (
     <div className="post-grid-container">
       {posts.map((post, index) => (
-        <Post key={index} />
+        <Post key={index} post={post} />
       ))}
+      <Boton></Boton>
     </div>
-  )
+  );
 }
 
 export default Posts;

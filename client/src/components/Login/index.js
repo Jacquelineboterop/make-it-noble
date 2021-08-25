@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './styles.css'
+import { Redirect } from 'react-router'
+
 
 function Login() {
   const [username, setUserName]= useState("");
   const [password, setPassword]= useState("");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event,res) {
    event.preventDefault();
    await axios({
      method: "POST",
@@ -16,9 +18,11 @@ function Login() {
        username,
        password
      }
+
    }).then(() => {
      setUserName("");
      setPassword("");
+     <Redirect to="/posts"/>
    }).catch(error => {
      console.log(error)
    })
@@ -26,7 +30,7 @@ function Login() {
   
   return  (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="form-login" onSubmit={handleSubmit}>
         <fieldset> 
           <input type="text" value={username} onChange={event => setUserName(event.target.value)} placeholder="Username"/>
         </fieldset>

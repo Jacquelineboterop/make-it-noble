@@ -3,15 +3,15 @@ import { IoShareSocial, IoHeartOutline, IoChatbubblesOutline } from "react-icons
 import photo from './photo.png'
 import './styles.css'
 
-function Post() {
+function Post({post}) {
   return  (
     <div className="post-grid-item">
         <div className="header-post">
           <img src={photo} className="header-post-photo"/>
-          <a href="#" className="txt-post-name" >July Braum <p className="txt-date">Dic 3. 2021</p></a>
+          <a href="#" className="txt-post-name" >{post.author} <p className="txt-date">{post.date}</p></a>
         </div>
         <div className="body-post">
-          <p className="txt-post-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          <p className="txt-post-body">{post.content}</p>
         </div>
         <div className="footer-post">
           <div className="footer-post-icons">

@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(4, 25%);
   min-height: 100vh;
+  margin-left: 4em;
 }
 
 .post-grid-item {
@@ -9,6 +10,7 @@
   grid-column: span 1;
   grid-row: span 1;
   height: 33.33vh;
+  padding-left: 16px;
 }
 
 .post-grid-item:nth-child(8n-5) {
@@ -19,4 +21,20 @@
 
 .post-grid-item:nth-child(8n-2) {
   grid-column: span 2;
+}
+
+@media (max-width: 600px) {
+  .post-grid-container {
+    display: grid;
+    margin-left: 0;
+    margin-top: 3em;
+    grid-template-columns: 100%;
+    margin-left: 0;
+  }  
+  .post-grid-item:nth-child(n) {
+    grid-column: span 1;
+    grid-row: span 1;
+    width: 100vh;
+  }
+  
 }

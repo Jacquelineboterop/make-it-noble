@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const { response } = require("express");
 const cookieSession = require("cookie-session");
-
+const cors = require("cors");
 //express
 const app = express();
 const PORT = 3000;
-
+app.use(cors());
 app.use(cookieSession({
   secret: " ",
   maxAge: 5 * 60 * 1000,
@@ -28,8 +28,12 @@ const UserSchema = new mongoose.Schema({
 });
 
 const PostSchema = new mongoose.Schema({
-  noteIn: String,
+  content: String,
   userUuid: String,
+  author: String,
+
+},{
+  timestamps:true
 });
 
 const PostModel = mongoose.model("Post", PostSchema);
@@ -106,16 +110,35 @@ app.post("/post", async (request, response) => {
   try {
     const { userUuid, ...data } = request.body;
     if (user) {
-      const post = await PostModel.create({ ...data, userUuid: user});
-      response.status(200).json({
-        created: true,
-      });
-    } else {
-      response.status(401).json(error);
-    }  
+      const author = await UserModel.findById(user);
+      const post = await PostModel.create({ ...data, author: `${author.name} ${author.lastname}`, userUuid: user});
+      response.status(200).json(post);
+    } 
+    /*else {
+     response.status(401).json(error);
+    }  */
   } catch (error) {
     response.status(500).json(error);
   }
 });
+
+//Posts
+app.get("/posts", async (request, response) => {
+  const user =  request.session.userId;
+      try {
+        const { userUuid, ...data } = request.body;
+        // if (user) {
+        //const posts = await PostModel.find({userUuid: user});
+        const posts = await PostModel.find({});
+          response.status(200).json({
+            posts,
+          });
+        // } else {
+          // response.status(401).json(error);
+        // }  
+      } catch (error) {
+        response.status(500).json(error);
+      }
+  });
 
 app.listen(PORT, () => console.log(`Server listen on port ${PORT}`));
